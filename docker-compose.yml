@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+
+  db:
+    container_name: example-db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
